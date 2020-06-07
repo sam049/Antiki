@@ -1,18 +1,73 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Item} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      email: 'bortzork@gmail.com',
+      password: 'lobster21',
+      isAdmin: true
+    })
   ])
 
-  console.log(`seeded ${users.length} users`)
+  const items = await Promise.all([
+    Item.create({
+      name: 'test',
+      description: 'DESC HOMEPAGE',
+      location: 'homepage',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC HOMEPAGE1',
+      location: 'homepage',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC HISTORY',
+      location: 'history',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC HISTORY1',
+      location: 'history',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC TARGETS',
+      location: 'targets',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC GALLERY',
+      location: 'gallery',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    }),
+    Item.create({
+      name: 'test',
+      description: 'DESC GALLERY1',
+      location: 'gallery',
+      imageURL: 'wwww.test.com',
+      status: 'Active'
+    })
+  ])
+
+  console.log(`seeded ${users.length} users and ${items.length} items`)
   console.log(`seeded successfully`)
 }
 
