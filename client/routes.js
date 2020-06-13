@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import {Login, Signup} from './components'
 import Admin from './components/admin'
 import Target from './components/targets'
+import Gallery from './components/gallery'
+import Homepage from './components/homepage'
 import {me} from './store'
 
 /**
@@ -24,6 +26,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/targets" component={Target} />
+        <Route path="/gallery" component={Gallery} />
 
         {isLoggedIn && (
           <Switch>
@@ -32,7 +35,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Homepage} />
       </Switch>
     )
   }

@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, {Component} from 'react'
 import SingleItem from './singleItem'
 
-export default class Admin extends Component {
-  constructor(props) {
-    super(props)
+export default class Targets extends Component {
+  constructor() {
+    super()
     this.state = {
       items: []
     }
