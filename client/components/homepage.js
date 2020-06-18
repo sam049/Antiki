@@ -6,6 +6,9 @@ export default class Homepage extends Component {
     this.state = {}
   }
   render() {
+    console.log('homepage hit')
+    console.log(this)
+    console.log(this.props)
     return (
       <div>
         <h1>WELCOME TO JEFFREYS TARGET PALACE</h1>

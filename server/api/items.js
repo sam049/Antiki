@@ -1,6 +1,16 @@
 const router = require('express').Router()
 const Item = require('../db/models/items')
 
+const isAdmin = () => {
+  return (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+      next()
+    } else {
+      res.status(403).send('Permission Denied')
+    }
+  }
+}
+
 router.get('/', async (req, res, next) => {
   try {
     const items = await Item.findAll()
@@ -10,7 +20,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin(), async (req, res, next) => {
   try {
     if (!req.body) {
       res.sendStatus(400)
