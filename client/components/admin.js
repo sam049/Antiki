@@ -23,6 +23,7 @@ export default class Admin extends Component {
   }
 
   render() {
+    console.log('this', this)
     return (
       <div>
         <h1> admin page</h1>

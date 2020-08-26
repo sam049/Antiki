@@ -6,7 +6,8 @@ export default class Targets extends Component {
   constructor() {
     super()
     this.state = {
-      items: []
+      items: [],
+      isAdmin: false
     }
   }
   // const filteredArray = {this.state.items.filter(item => (
@@ -15,8 +16,10 @@ export default class Targets extends Component {
 
   async componentDidMount() {
     const {data} = await axios.get('/api/items')
+    const user = await axios.get('/auth/me')
     this.setState({
-      items: data.filter(item => item.location === 'targets')
+      items: data.filter(item => item.location === 'targets'),
+      isAdmin: user.data.isAdmin
     })
     console.log('data', data)
     console.log('.......', this.state)
@@ -34,6 +37,7 @@ export default class Targets extends Component {
               description={item.description}
               imageUrl={item.imageURL}
               status={item.status}
+              isAdmin={this.state.isAdmin}
             />
           </div>
         ))}

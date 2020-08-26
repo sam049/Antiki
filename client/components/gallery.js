@@ -6,16 +6,19 @@ export default class Gallery extends Component {
   constructor() {
     super()
     this.state = {
-      items: []
+      items: [],
+      isAdmin: false
     }
   }
   async componentDidMount() {
     const {data} = await axios.get('/api/items')
+    const user = await axios.get('/auth/me')
     this.setState({
-      items: data.filter(item => item.location === 'gallery')
+      items: data.filter(item => item.location === 'gallery'),
+      isAdmin: user.data.isAdmin
     })
-    console.log('data', data)
-    console.log('.......', this.state)
+    console.log('.......state', this.state)
+    console.log('user', user.data)
   }
   render() {
     console.log('state', this.state)
@@ -30,6 +33,7 @@ export default class Gallery extends Component {
               description={item.description}
               imageUrl={item.imageURL}
               status={item.status}
+              isAdmin={this.state.isAdmin}
             />
           </div>
         ))}
