@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Antiques website",
   "engines": {
-    "node": "~12.11.1"
+    "node": "~12.13.0"
   },
   "main": "index.js",
   "scripts": {
